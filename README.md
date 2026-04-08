@@ -55,13 +55,6 @@ flashcard-app/
     └── default-data.js # Default deck and card data
 ```
 
-## Browser Support
-
-- Chrome 90+
-- Firefox 88+
-- Safari 14+
-- Edge 90+
-
 ## Development
 
 The app uses vanilla JavaScript with no external dependencies. All data is stored locally in the browser's localStorage.
