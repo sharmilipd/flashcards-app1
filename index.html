@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flashcards App</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav id="sidebar">
+        <h2>Decks</h2>
+        <ul id="deck-list">
+            <!-- Deck items will be populated by JavaScript -->
+        </ul>
+        <button id="new-deck-btn">New Deck</button>
+    </nav>
+    <main id="main-content">
+        <header>
+            <h1 id="deck-title">Select a Deck</h1>
+            <input type="search" id="search-bar" placeholder="Search cards..." aria-label="Search flashcards">
+        </header>
+        <section id="flashcard-area" aria-live="polite">
+            <!-- Flashcard study area will be populated by JavaScript -->
+        </section>
+    </main>
+    <script src="assets/default-data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

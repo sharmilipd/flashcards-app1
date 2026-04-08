@@ -1,0 +1,357 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #1a1a1a;
+    --accent-color: #2563eb;
+    --accent-hover: #1d4ed8;
+    --sidebar-bg: #f8fafc;
+    --sidebar-border: #e2e8f0;
+    --card-bg: #ffffff;
+    --card-border: #e2e8f0;
+    --input-bg: #f1f5f9;
+    --input-border: #cbd5e1;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --sidebar-width: 300px;
+    --border-radius: 8px;
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #0f172a;
+        --text-color: #f1f5f9;
+        --sidebar-bg: #1e293b;
+        --sidebar-border: #334155;
+        --card-bg: #1e293b;
+        --card-border: #334155;
+        --input-bg: #334155;
+        --input-border: #475569;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    }
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+#sidebar {
+    width: var(--sidebar-width);
+    background-color: var(--sidebar-bg);
+    border-right: 1px solid var(--sidebar-border);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+#sidebar h2 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+#deck-list {
+    list-style: none;
+    flex: 1;
+    margin-bottom: 1rem;
+}
+
+#deck-list li {
+    margin-bottom: 0.5rem;
+}
+
+#deck-list button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--border-radius);
+    text-align: left;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+#deck-list button:hover {
+    background-color: var(--input-bg);
+}
+
+#deck-list button:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+#new-deck-btn {
+    padding: 0.75rem;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+#new-deck-btn:hover {
+    background-color: var(--accent-hover);
+}
+
+#new-deck-btn:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+#main-content {
+    flex: 1;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    margin-bottom: 1rem;
+}
+
+#deck-title {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+#search-bar {
+    width: 100%;
+    max-width: 400px;
+    padding: 0.75rem;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+}
+
+#search-bar:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+#flashcard-area {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 400px;
+}
+
+#deck-list button.active {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.deck-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.delete-deck-btn {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.25rem;
+    border-radius: var(--border-radius);
+    transition: background-color 0.2s;
+}
+
+.delete-deck-btn:hover {
+    background-color: var(--input-bg);
+}
+
+.delete-deck-btn:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* Modal styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    box-shadow: var(--shadow);
+}
+
+.modal-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+.modal-close:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+
+.modal-content label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+}
+
+.modal-content textarea {
+    width: 100%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical;
+}
+
+.modal-content textarea:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+.modal-content button[type="submit"] {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.modal-content button[type="submit"]:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+/* Flashcard styles */
+.card {
+    width: 100%;
+    max-width: 400px;
+    height: 250px;
+    perspective: 1000px;
+    cursor: pointer;
+    margin: 0 auto;
+}
+
+.card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--card-border);
+}
+
+.card-back {
+    transform: rotateY(180deg);
+}
+
+.card.is-flipped .card-inner {
+    transform: rotateY(180deg);
+}
+
+.card-controls {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.card-controls button {
+    padding: 0.5rem 1rem;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.card-controls button:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
+
+#add-card-btn {
+    padding: 0.5rem 1rem;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    font-weight: 500;
+    margin-left: 1rem;
+}
+
+#add-card-btn:focus {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 2px;
+}
